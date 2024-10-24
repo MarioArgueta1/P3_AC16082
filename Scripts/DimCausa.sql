@@ -1,4 +1,4 @@
-SELECT TOP 100 MIN(v.Id) as 'IdCausaN', CONVERT(FLOAT,v.["WeatherDelay"]) as 'RetrasoClima', CONVERT(FLOAT,v.["CarrierDelay"]) as 'RestrasoProveedor', CONVERT(FLOAT,v.["SecurityDelay"]) as 'RetrasoSeguridad', CONVERT(FLOAT,v.["NASDelay"]) as 'RetrasoSistemaNacionalAviacion', CONVERT(FLOAT,v.["LateAircraftDelay"]) as 'RetrasoAereonave',
+SELECT MIN(v.Id) as 'IdCausaN', CONVERT(FLOAT,v.["WeatherDelay"]) as 'RetrasoClima', CONVERT(FLOAT,v.["CarrierDelay"]) as 'RestrasoProveedor', CONVERT(FLOAT,v.["SecurityDelay"]) as 'RetrasoSeguridad', CONVERT(FLOAT,v.["NASDelay"]) as 'RetrasoSistemaNacionalAviacion', CONVERT(FLOAT,v.["LateAircraftDelay"]) as 'RetrasoAereonave',
 COALESCE(
 (ISNULL(CASE 
 WHEN CONVERT(FLOAT,v.["WeatherDelay"]) > 0 THEN 'Clima,'
