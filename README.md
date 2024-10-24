@@ -60,3 +60,5 @@ ETL
 * Se construyo un ETL Principal, el cual como primera instruccion tiene el borrado (en caso de existir) de las dimensiones, para posteriormente crear las dimensiones y ejecutar los paquetes de cada dimension y tabla de hechos para el llenado de la data <br />
 
 * Para el caso de la DimTiempo, se utiliza la tabla auxiliar Date_Dimension, la cual se debe correr por separado una sola vez usando el script de creacion de la tabla y posteriormente ejecutar el script de insercion de la data para esta tabla auxiliar, para asi el ETL principal llenar la dimension de tiempo <br />
+
+* Para el ETL de raw data, se creo un parametro que se utiliza para especificar la url (path) de la ruta en donde se encuentre el proyecto y accediendo a la carpeta RawData, en esta carpeta se deberan colocar los 55 archivos a leer, se ha dejado a dispocision en el repositorio el archivo para Airlines y airports, ejemplo de ruta a colocar en el parmetro: C:\Users\Mario\Documents\UES\Especializacion\Datos\Parcial 3\P3_AC16082\ETL-Project\P3_AC16082\RawData\
