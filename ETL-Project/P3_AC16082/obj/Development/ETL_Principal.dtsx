@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/20/2024 2:23:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-V5LMM6U"
+  DTS:CreatorName="DESKTOP-V5LMM6U\Mario"
+  DTS:DTSID="{59669C0B-F012-4E15-8827-B9E6F3FCCCF5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="17418"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{388B3818-FA1E-456F-9022-92316E5242B5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8BFAB0CC-0F17-421B-8E5F-9B95059D65BB}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=P3_AC16082;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea de SQL Preparación 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{3548d240-e97f-471e-afa0-55194963b822}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea de SQL Preparación 1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8BFAB0CC-0F17-421B-8E5F-9B95059D65BB}"
+          SQLTask:SqlStatementSource="if exists (select 1&#xA;   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')&#xA;   where r.fkeyid = object_id('FACTESTADOVUELO') and o.name = 'FK_FACTESTA_RELATIONS_DIMVUELO')&#xA;alter table FACTESTADOVUELO&#xA;   drop constraint FK_FACTESTA_RELATIONS_DIMVUELO&#xA;go&#xA;&#xA;if exists (select 1&#xA;   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')&#xA;   where r.fkeyid = object_id('FACTESTADOVUELO') and o.name = 'FK_FACTESTA_RELATIONS_DIMCAUSA')&#xA;alter table FACTESTADOVUELO&#xA;   drop constraint FK_FACTESTA_RELATIONS_DIMCAUSA&#xA;go&#xA;&#xA;if exists (select 1&#xA;   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')&#xA;   where r.fkeyid = object_id('FACTESTADOVUELO') and o.name = 'FK_FACTESTA_RELATIONS_DIMTIEMP')&#xA;alter table FACTESTADOVUELO&#xA;   drop constraint FK_FACTESTA_RELATIONS_DIMTIEMP&#xA;go&#xA;&#xA;if exists (select 1&#xA;   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')&#xA;   where r.fkeyid = object_id('FACTESTADOVUELO') and o.name = 'FK_FACTESTA_RELATIONS_DIMAEREO')&#xA;alter table FACTESTADOVUELO&#xA;   drop constraint FK_FACTESTA_RELATIONS_DIMAEREO&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysobjects&#xA;           where  id = object_id('DIMAEREOPUERTO')&#xA;            and   type = 'U')&#xA;   drop table DIMAEREOPUERTO&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysobjects&#xA;           where  id = object_id('DIMCAUSA')&#xA;            and   type = 'U')&#xA;   drop table DIMCAUSA&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysobjects&#xA;           where  id = object_id('DIMTIEMPO')&#xA;            and   type = 'U')&#xA;   drop table DIMTIEMPO&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysobjects&#xA;           where  id = object_id('DIMVUELO')&#xA;            and   type = 'U')&#xA;   drop table DIMVUELO&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysindexes&#xA;           where  id    = object_id('FACTESTADOVUELO')&#xA;            and   name  = 'RELATIONSHIP_4_FK'&#xA;            and   indid &gt; 0&#xA;            and   indid &lt; 255)&#xA;   drop index FACTESTADOVUELO.RELATIONSHIP_4_FK&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysindexes&#xA;           where  id    = object_id('FACTESTADOVUELO')&#xA;            and   name  = 'RELATIONSHIP_3_FK'&#xA;            and   indid &gt; 0&#xA;            and   indid &lt; 255)&#xA;   drop index FACTESTADOVUELO.RELATIONSHIP_3_FK&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysindexes&#xA;           where  id    = object_id('FACTESTADOVUELO')&#xA;            and   name  = 'RELATIONSHIP_2_FK'&#xA;            and   indid &gt; 0&#xA;            and   indid &lt; 255)&#xA;   drop index FACTESTADOVUELO.RELATIONSHIP_2_FK&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysindexes&#xA;           where  id    = object_id('FACTESTADOVUELO')&#xA;            and   name  = 'RELATIONSHIP_1_FK'&#xA;            and   indid &gt; 0&#xA;            and   indid &lt; 255)&#xA;   drop index FACTESTADOVUELO.RELATIONSHIP_1_FK&#xA;go&#xA;&#xA;if exists (select 1&#xA;            from  sysobjects&#xA;           where  id = object_id('FACTESTADOVUELO')&#xA;            and   type = 'U')&#xA;   drop table FACTESTADOVUELO&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Table: DIMAEREOPUERTO                                        */&#xA;/*==============================================================*/&#xA;create table DIMAEREOPUERTO (&#xA;   IDAEREOPUERTO        INT IDENTITY(1,1)    not null,&#xA;   IDAEREOPUERTON       int                  not null,&#xA;   IDORIGENAEREOPUERTO  int                  not null,&#xA;   IDDESTINOAEREOPUERTO int                  not null,&#xA;   NOMBREAEREOPUERTOORIGEN               varchar(500)         not null,&#xA;   NOMBREAEREOPUERTODESTINO               varchar(500)         not null,&#xA;   constraint PK_DIMAEREOPUERTO primary key nonclustered (IDAEREOPUERTO)&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Table: DIMCAUSA                                              */&#xA;/*==============================================================*/&#xA;create table DIMCAUSA (&#xA;   IDCAUSA              INT IDENTITY(1,1)     not null,&#xA;   IDCAUSAN             int                  not null,&#xA;   RETRASOCLIMA         int                  not null,&#xA;   RETRASOPROVEEDOR     int                  not null,&#xA;   RETRASOSEGURIDAD     int                  not null,&#xA;   RETRASOSISTEMANACIONALAVIACION int                  not null,&#xA;   RETRASOAEREONAVE     int                  not null,&#xA;   MOTIVO               varchar(250)         not null,&#xA;   CODIGOCANCELACION    varchar(50)          not null,&#xA;   INDICADORCANCELACION int                  not null,&#xA;   CANCELADO            varchar(2)           not null,&#xA;   constraint PK_DIMCAUSA primary key nonclustered (IDCAUSA)&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Table: DIMTIEMPO                                             */&#xA;/*==============================================================*/&#xA;create table DIMTIEMPO (&#xA;   IDTIEMPO             int                  not null,&#xA;   FECHACOMPLETA        datetime             not null,&#xA;   DIADELASEMANA        int                  not null,&#xA;   NUMERODEDIADELMES    int                  not null,&#xA;   NUMERODEDIAENGENERAL int                  not null,&#xA;   NOMBREDELDIA         varchar(15)          not null,&#xA;   NOMBREDELDIAABREVIADO varchar(3)           not null,&#xA;   BANDERDIALUNESAVIERNRES varchar(25)          not null,&#xA;   NUMEROSEMANAENELANO  int                  not null,&#xA;   NUMERODESEMANAENGENERAL int                  not null,&#xA;   FECHADEINICIODESEMANA datetime             not null,&#xA;   CLAVEFECHAINICIODESEMANA int                  not null,&#xA;   NUMERODEMES          int                  not null,&#xA;   NUMERODEMESENGENERAL int                  not null,&#xA;   NOMBREDELMES         varchar(15)          not null,&#xA;   NOMBREDELMESABREVIADO varchar(3)           not null,&#xA;   CUARTO               int                  not null,&#xA;   NUMERODEANO          int                  not null,&#xA;   ANOMES               int                  not null,&#xA;   MESFISCAL            int                  not null,&#xA;   CUARTOFISCAL         int                  not null,&#xA;   ANOFISCAL            int                  not null,&#xA;   BANDERAFINDEMES      varchar(50)          not null,&#xA;   FECHADEMISMODIAHACEUNANO datetime             not null,&#xA;   constraint PK_DIMTIEMPO primary key nonclustered (IDTIEMPO)&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Table: DIMVUELO                                              */&#xA;/*==============================================================*/&#xA;create table DIMVUELO (&#xA;   IDVUELO              INT IDENTITY(1,1)    not null,&#xA;   IDVUELON             int                  not null,&#xA;   NUMEROVUELO          int                  not null,&#xA;   AEREOLINEA           varchar(100)         null,&#xA;   CIUDADORIGEN         varchar(50)          not null,&#xA;   CIUDADDESTINO        varchar(50)          not null,&#xA;   FECHA                int                  not null,&#xA;   constraint PK_DIMVUELO primary key nonclustered (IDVUELO)&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Table: FACTESTADOVUELO                                       */&#xA;/*==============================================================*/&#xA;create table FACTESTADOVUELO (&#xA;   IDVUELO              int                  null,&#xA;   IDCAUSA              int                  null,&#xA;   IDTIEMPO             int                  null,&#xA;   IDAEREOPUERTO        int                  null,&#xA;   MINUTOSRETRASOSALIDA int                  not null,&#xA;   MINUTOSRETRASOLLEGADA int                  not null,&#xA;   CANTIDADVUELOS       int                  not null,&#xA;   DISTANCIARECORRIDA   int                  not null&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Index: RELATIONSHIP_1_FK                                     */&#xA;/*==============================================================*/&#xA;create index RELATIONSHIP_1_FK on FACTESTADOVUELO (&#xA;IDVUELO ASC&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Index: RELATIONSHIP_2_FK                                     */&#xA;/*==============================================================*/&#xA;create index RELATIONSHIP_2_FK on FACTESTADOVUELO (&#xA;IDCAUSA ASC&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Index: RELATIONSHIP_3_FK                                     */&#xA;/*==============================================================*/&#xA;create index RELATIONSHIP_3_FK on FACTESTADOVUELO (&#xA;IDTIEMPO ASC&#xA;)&#xA;go&#xA;&#xA;/*==============================================================*/&#xA;/* Index: RELATIONSHIP_4_FK                                     */&#xA;/*==============================================================*/&#xA;create index RELATIONSHIP_4_FK on FACTESTADOVUELO (&#xA;IDAEREOPUERTO ASC&#xA;)&#xA;go&#xA;&#xA;alter table FACTESTADOVUELO&#xA;   add constraint FK_FACTESTA_RELATIONS_DIMVUELO foreign key (IDVUELO)&#xA;      references DIMVUELO (IDVUELO)&#xA;go&#xA;&#xA;alter table FACTESTADOVUELO&#xA;   add constraint FK_FACTESTA_RELATIONS_DIMCAUSA foreign key (IDCAUSA)&#xA;      references DIMCAUSA (IDCAUSA)&#xA;go&#xA;&#xA;alter table FACTESTADOVUELO&#xA;   add constraint FK_FACTESTA_RELATIONS_DIMTIEMP foreign key (IDTIEMPO)&#xA;      references DIMTIEMPO (IDTIEMPO)&#xA;go&#xA;&#xA;alter table FACTESTADOVUELO&#xA;   add constraint FK_FACTESTA_RELATIONS_DIMAEREO foreign key (IDAEREOPUERTO)&#xA;      references DIMAEREOPUERTO (IDAEREOPUERTO)&#xA;go&#xA;insert into DIMTIEMPO&#xA;select date_key, full_date, day_of_week, day_num_in_month, day_num_overall, day_name, day_abbrev, weekday_flag, &#xA;week_num_in_year, week_num_overall, week_begin_date, week_begin_date_key, [month], month_num_overall, month_name, &#xA;month_abbrev, [quarter], [year], yearmo, fiscal_month, fiscal_quarter, fiscal_year, last_day_in_month_flag, &#xA;same_day_year_ago_date from Date_Dimension&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar DimAereopuerto"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{264D59D9-142D-44C6-8A6D-FE2DBB00510E}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar DimAereopuerto"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ETL_DimAereopuerto.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar DimCausa"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{E3B1D618-C072-4C3D-9641-20309FD67971}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar DimCausa"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ETL_DimCausa.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar DimVuelo"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{57248D79-77E1-4A54-AE7F-99275EF88620}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar DimVuelo"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ETL_DimVuelo.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar FactEstadoVuelo"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{F0E579FC-F1A2-4AB9-B81F-A21DC7C3AB6C}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar FactEstadoVuelo"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ETL_FacEstadoVuelo.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{047910D9-F8DE-4783-A239-716775FFE4E9}"
+      DTS:From="Package\Tarea de SQL Preparación 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Tarea Ejecutar DimVuelo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{186B6E9F-B8E8-4DD8-AB5D-BA6D79E97973}"
+      DTS:From="Package\Tarea Ejecutar DimVuelo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Tarea Ejecutar DimAereopuerto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{03D08C79-B0C8-4C2F-866B-BED3618580F6}"
+      DTS:From="Package\Tarea Ejecutar DimAereopuerto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Tarea Ejecutar DimCausa" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{7F7EC8ED-C101-4E21-828F-DB0CBB26AFE7}"
+      DTS:From="Package\Tarea Ejecutar DimCausa"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Tarea Ejecutar FactEstadoVuelo" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Tarea de SQL Preparación 1"
+          TopLeft="57,34" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\Tarea Ejecutar DimAereopuerto"
+          TopLeft="44,215" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Tarea Ejecutar DimCausa"
+          TopLeft="70,301" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Tarea Ejecutar DimVuelo"
+          TopLeft="66,125" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Tarea Ejecutar FactEstadoVuelo"
+          TopLeft="66,387" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="164.75,76">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="162,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="164,257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="165,343">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
